@@ -51,23 +51,20 @@ window.addEventListener("DOMContentLoaded", () => {
   //     console.log(response.headers.get('Content-Type'))
   //   });
 
-  let url = "https://pokeapi.co/api/v2/pokemon";
+  let url = "https://pokeapi.co/api/v2/pokemon/?limit=10";
 
-  function toJSON(response){
+  function toJSON(response) {
     return response.json();
   }
 
   fetch(url).then(toJSON).then((data) => {
     data.results.forEach(element => {
-      let item_number = Number(element.url.split('/')[6]);
-      if(item_number <= 10){
-        let li = document.createElement("li");
-        li.innerText = element.name;
-        ul.appendChild(li);
-        console.log(element.url);
-      }
+      let li = document.createElement("li");
+      li.innerText = element.name;
+      ul.appendChild(li);
+      console.log(element.url);
     });
-  });
+});
 
-  const ul = document.querySelector("ul");
+const ul = document.querySelector("ul");
 });
